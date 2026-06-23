@@ -1,44 +1,70 @@
+# ODataBr Server
 
-[pt_br}
--------------------------------------------------------
---MetadataGenerator
-|     Extrai metadata do banco de dados e gerar JSON OData para o Servidor OData;
-|
-|  
---MVCBrODataServiceSetup é um instalador do servidor OData Windows Service.
-|
-|Após instalar o serviço:
-| 1. configurar firebird3 para apontar para o banco de dados-
-|   editar o arquivo databases.conf e adicionar:
-|          MVCBr = c:\pasta\mvcbr.fdb
-| 2. nesta fase o usuario padão é o mesmo padrão que vem no FIREBIRD (aquele de sempre);
-| 3. a configuração de porta do servidor e também de banco de dados, vai em  MVCBrServer.config |
-|
-|
-| Problemas conhecidos:
-| 1. o instalador não inicializa o serviço automático, precisa fazer manual;
-| 2. não consegue instalar se o serviço já existir.
-| 3. a implementação funciona com driver FB; Há uma implementação iniciada para MySQL - ainda sem testes - precisando de voluntários.
-|
-|--MVCBrServer
-|  Executávio standalone para servidor OData
-|  
-|--MVCBrServer_ISAPI
-|  Servidor OData para ISAPI
-|
-|--MVCBrServer_Linux
-|  Servidor OData para Linux (Ubuntu)
-|
-|--MVCBrServerService
-|  Bin para Windows Services - servidor OData
-|
--------------------------------------------------------
+Servidor OData para Delphi com suporte a Firebird, MySQL, MSSQL, Oracle e PostgreSQL.
 
+Baseado no framework [MVCBr](https://github.com/amarildolacerda/MVCBr).
 
+## Estrutura
 
-[Gerando um DOCKER]
-o arquivo DockerFile contem os comando necessários para gerar uma maquina com DockerFile
-para instalar:
+```
+ODataBr/
+├── oData/            # Engine OData (parser, SQL, dialetos)
+├── MVCBrServer/      # Código do servidor (WebModule, controllers)
+├── DMVC/             # DMVC Framework (bundled)
+├── helpers/          # Utilitários (JSON, ThreadSafe)
+├── Translate/        # Arquivos de tradução
+├── Dockerfile        # Container Linux
+└── docker-compose.yml # Servidor + Firebird
+```
 
-      docker build -f ./DockerFile
+## Compilar
 
+```bash
+# Com dcc32.exe (Delphi command-line)
+make server
+
+# Ou diretamente
+dcc32 ODataBrServer.dpr
+```
+
+## Executar
+
+```bash
+# Windows
+ODataBrServer.exe
+
+# Linux
+./ODataBrServer_Linux
+
+# Docker
+docker compose up -d
+```
+
+## Configuração
+
+Edite `MVCBrServer.config`:
+
+```json
+{
+  "Config": {
+    "WSPort": "8080",
+    "driverid": "FB",
+    "Server": "localhost",
+    "Database": "mvcbr",
+    "user_name": "sysdba",
+    "Password": "masterkey"
+  }
+}
+```
+
+## Docker
+
+```bash
+# Construir imagem
+docker build -t odatabr-server .
+
+# Executar com banco
+docker compose up -d
+```
+
+Servidor disponível em `http://localhost:8080/odata`.

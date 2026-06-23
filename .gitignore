@@ -1,0 +1,42 @@
+# Compiled binaries
+*.exe
+*.dll
+*.bpl
+*.bpi
+*.dcp
+*.so
+*.drc
+*.map
+*.dres
+*.rsm
+*.tds
+*.dcu
+*.o
+*.ppu
+
+# Build output
+Win32/
+Win64/
+Debug/
+Release/
+dcu/
+bin/
+
+# IDE temporaries
+*.local
+*.identcache
+*.projdata
+*.tvsconfig
+*.dsk
+*.dproj.local
+*.otares
+__history/
+__recovery/
+
+# Config (keep template, ignore local)
+MVCBrServer.config
+!MVCBrServer.config
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,29 @@
+name: Build ODataBr Server
+
+on:
+  push:
+    branches: [ master, dev ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup Delphi compiler
+      run: |
+        git clone https://github.com/amarildolacerda/delphi_deploy.git ..\delphi_deploy
+        echo "DCC32=$Env:GITHUB_WORKSPACE\..\delphi_deploy\cmp\dcc32.exe" >> $Env:GITHUB_ENV
+
+    - name: Compile
+      run: |
+        "%DCC32%" ODataBrServer.dpr `
+          -U"%GITHUB_WORKSPACE%;%GITHUB_WORKSPACE%\MVCBrServer;%GITHUB_WORKSPACE%\MVCBrServer\WS;%GITHUB_WORKSPACE%\MVCBrServer\WSConfig;%GITHUB_WORKSPACE%\MVCBrServer\Models;%GITHUB_WORKSPACE%\oData;%GITHUB_WORKSPACE%\helpers;%GITHUB_WORKSPACE%\DMVC\sources;%GITHUB_WORKSPACE%\DMVC\lib\loggerpro;%GITHUB_WORKSPACE%\Translate;..\delphi_deploy\cmp\dcu;..\delphi_deploy\cmp\bpl" `
+          -I"%GITHUB_WORKSPACE%;..\delphi_deploy\cmp\dcu" `
+          -NO"%GITHUB_WORKSPACE%\dcu" -LE"%GITHUB_WORKSPACE%\dcu" -LN"%GITHUB_WORKSPACE%\dcu" `
+          -NS"Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;Vcl;System;Xml;Data;Datasnap;Web;Soap;Winapi;Windows;System.Win;VCLTee"
+      shell: cmd
