@@ -40,6 +40,9 @@ MVCBrServer.config
 # Node (opencode plugin)
 .opencode/node_modules/
 
+# Dependência externa (clonar lado a lado em ../MVCBr/)
+MVCBr/
+
 # OS
 .DS_Store
 Thumbs.db
