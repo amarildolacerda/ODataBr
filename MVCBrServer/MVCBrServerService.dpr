@@ -3,8 +3,8 @@ program MVCBrServerService;
 uses
   Vcl.SvcMgr,
   MVCBr.Servico in 'MVCBr.Servico.pas' {MVCBrService: TService} ,
-  MVCBr.ApplicationController in '..\MVCBr.ApplicationController.pas',
-  MVCBr.ObjectConfigList in '..\MVCBr.ObjectConfigList.pas',
+  MVCBr.ApplicationController,
+  MVCBr.ObjectConfigList,
   MVC.oData.Base in '..\oData\MVC.oData.Base.pas',
   oData.Collections in '..\oData\oData.Collections.pas',
   oData.Dialect.MSSQL in '..\oData\oData.Dialect.MSSQL.pas',

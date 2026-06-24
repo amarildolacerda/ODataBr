@@ -38,7 +38,7 @@ uses
   oData.Dialect.MySQL in '..\oData\oData.Dialect.MySQL.pas',
   oData.Dialect.MSSQL in '..\oData\oData.Dialect.MSSQL.pas',
   oData.Dialect.PostgreSQL in '..\oData\oData.Dialect.PostgreSQL.pas',
-  MVCBr.ObjectConfigList in '..\MVCBr.ObjectConfigList.pas',
+  MVCBr.ObjectConfigList,
   MVCAsyncMiddleware in 'MVCAsyncMiddleware.pas',
   oData.Dialect.Oracle in '..\oData\oData.Dialect.Oracle.pas',
   ws.OData.Procedures in 'ws.OData.Procedures.pas',

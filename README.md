@@ -11,11 +11,11 @@ ODataBr/
 ├── oData/            # Engine OData (parser, SQL, dialetos)
 ├── MVCBrServer/      # Código do servidor (WebModule, controllers)
 ├── DMVC/             # DMVC Framework (bundled)
-├── helpers/          # Utilitários (JSON, ThreadSafe)
-├── Translate/        # Arquivos de tradução
 ├── Dockerfile        # Container Linux
 └── docker-compose.yml # Servidor + Firebird
 ```
+
+**Dependência:** Requer o repositório [MVCBr](https://github.com/amarildolacerda/MVCBr) clonado lado a lado para fornecer o core do framework (`MVCBr.*.pas`, `helpers/`).
 
 ## Compilar
 

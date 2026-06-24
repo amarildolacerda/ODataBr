@@ -11,8 +11,16 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout
+    - name: Checkout ODataBr
       uses: actions/checkout@v4
+      with:
+        path: ODataBr
+
+    - name: Checkout MVCBr (dependência)
+      uses: actions/checkout@v4
+      with:
+        repository: amarildolacerda/MVCBr
+        path: MVCBr
 
     - name: Setup Delphi compiler
       run: |
@@ -21,9 +29,9 @@ jobs:
 
     - name: Compile
       run: |
-        "%DCC32%" ODataBrServer.dpr `
-          -U"%GITHUB_WORKSPACE%;%GITHUB_WORKSPACE%\MVCBrServer;%GITHUB_WORKSPACE%\MVCBrServer\WS;%GITHUB_WORKSPACE%\MVCBrServer\WSConfig;%GITHUB_WORKSPACE%\MVCBrServer\Models;%GITHUB_WORKSPACE%\oData;%GITHUB_WORKSPACE%\helpers;%GITHUB_WORKSPACE%\DMVC\sources;%GITHUB_WORKSPACE%\DMVC\lib\loggerpro;%GITHUB_WORKSPACE%\Translate;..\delphi_deploy\cmp\dcu;..\delphi_deploy\cmp\bpl" `
-          -I"%GITHUB_WORKSPACE%;..\delphi_deploy\cmp\dcu" `
-          -NO"%GITHUB_WORKSPACE%\dcu" -LE"%GITHUB_WORKSPACE%\dcu" -LN"%GITHUB_WORKSPACE%\dcu" `
+        "%DCC32%" ODataBr\ODataBrServer.dpr `
+          -U"%GITHUB_WORKSPACE%\ODataBr;%GITHUB_WORKSPACE%\ODataBr\MVCBrServer;%GITHUB_WORKSPACE%\ODataBr\MVCBrServer\WS;%GITHUB_WORKSPACE%\ODataBr\MVCBrServer\WSConfig;%GITHUB_WORKSPACE%\ODataBr\MVCBrServer\Models;%GITHUB_WORKSPACE%\ODataBr\oData;%GITHUB_WORKSPACE%\ODataBr\DMVC\sources;%GITHUB_WORKSPACE%\ODataBr\DMVC\lib\loggerpro;%GITHUB_WORKSPACE%\ODataBr\Translate;%GITHUB_WORKSPACE%\MVCBr;%GITHUB_WORKSPACE%\MVCBr\helpers;..\delphi_deploy\cmp\dcu;..\delphi_deploy\cmp\bpl" `
+          -I"%GITHUB_WORKSPACE%\ODataBr;%GITHUB_WORKSPACE%\MVCBr;..\delphi_deploy\cmp\dcu" `
+          -NO"%GITHUB_WORKSPACE%\ODataBr\dcu" -LE"%GITHUB_WORKSPACE%\ODataBr\dcu" -LN"%GITHUB_WORKSPACE%\ODataBr\dcu" `
           -NS"Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;Vcl;System;Xml;Data;Datasnap;Web;Soap;Winapi;Windows;System.Win;VCLTee"
       shell: cmd

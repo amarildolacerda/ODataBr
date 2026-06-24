@@ -33,7 +33,7 @@ uses
   oData.SQL in '..\oData\oData.SQL.pas',
   WS.Datamodule in 'WS.Datamodule.pas' {WSDatamodule: TDataModule} ,
   oData.Dialect.MySQL in '..\oData\oData.Dialect.MySQL.pas',
-  MVCBr.ObjectConfigList in '..\MVCBr.ObjectConfigList.pas',
+  MVCBr.ObjectConfigList,
   oData.JSON in '..\oData\oData.JSON.pas',
   MVCAsyncMiddleware in 'MVCAsyncMiddleware.pas',
   WS.Common in 'WS\WS.Common.pas',

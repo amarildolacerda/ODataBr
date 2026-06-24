@@ -9,12 +9,14 @@ DCC32 ?= dcc32
 BASE  ?= $(CURDIR)
 DCU   ?= $(BASE)\dcu
 
-# Unit search paths
+# Unit search paths (-U)
 UPATH  = $(BASE);$(BASE)\MVCBrServer;$(BASE)\MVCBrServer\WS
 UPATH += $(BASE)\MVCBrServer\WSConfig;$(BASE)\MVCBrServer\Models
-UPATH += $(BASE)\oData;$(BASE)\helpers
+UPATH += $(BASE)\oData
 UPATH += $(BASE)\DMVC\sources;$(BASE)\DMVC\lib\loggerpro
-UPATH += $(BASE)\Translate
+# Dependência externa: MVCBr framework (clone lado a lado)
+UPATH += $(BASE)\..\MVCBr;$(BASE)\..\MVCBr\helpers
+UFLAGS = -U"$(UPATH)" -I"$(UPATH)"
 CFLAGS = -U"$(UPATH)" -I"$(UPATH)" -NO$(DCU) -LE$(DCU) -LN$(DCU)
 CFLAGS += -NS"Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;Vcl;System;Xml;Data;Datasnap;Web;Soap;Winapi;Windows;System.Win;VCLTee"
 CFLAGS += -AWinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
