@@ -37,6 +37,9 @@ __recovery/
 MVCBrServer.config
 !MVCBrServer.config
 
+# Node (opencode plugin)
+.opencode/node_modules/
+
 # OS
 .DS_Store
 Thumbs.db
